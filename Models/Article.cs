@@ -1,4 +1,4 @@
-﻿namespace LifeCycleLab.Domain
+﻿namespace LifeCycleLab.Models
 {
     public class Article
     {
@@ -8,5 +8,10 @@
         public DateTime PublishDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
         public Author Author { get; set; }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

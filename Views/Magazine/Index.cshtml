@@ -1,0 +1,33 @@
+﻿@model List<LifeCycleLab.Models.Magazine>
+
+<h1>Articles</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Issue</th>
+            <th>PublishDate</th>
+            <th>Articles</th>
+            <th> </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var magazine in Model)
+        {
+            <tr>
+                <th>@magazine.Title</th>
+                <th>@magazine.Issue</th>
+                <th>@magazine.PublishDate</th>
+                <th>@string.Join(", ", magazine.Articles.Select(article => article.ToString()))</th>
+                <th>
+                    <a asp-controller="Magazine" asp-action="Edit" asp-route-id="@magazine.gid">Edit</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="mt-3">
+    <button onclick="@("window.location.href='" + @Url.Action("Create", "Magazine") + "'");" type="submit" class="btn btn-primary">Add magazine +</button>
+</div>
+

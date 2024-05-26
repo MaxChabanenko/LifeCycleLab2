@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Edit Author";
+}
+@model LifeCycleLab.Models.Author
+
+<h1>Edit Author</h1>
+
+<form method="post">
+    <div class="mt-3">
+        <label class="form-label">gid</label>
+        <input type="text" class="form-control" asp-for="gid" readonly/>
+    </div>
+    <div class="mt-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <label class="form-label">Second Name</label>
+        <input type="text" class="form-control" asp-for="SecondName" />
+        <span asp-validation-for="SecondName" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <label class="form-label">Birth Date</label>
+        <input type="date" class="form-control" asp-for="BirthDate" />
+        <span asp-validation-for="BirthDate" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
