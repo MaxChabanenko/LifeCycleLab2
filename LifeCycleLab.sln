@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeCycleLab", "LifeCycleLab.csproj", "{1CF68446-A913-4C7F-B6AC-BDACAA945812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeCycleLab.Domain", "..\LifeCycleLab.Domain\LifeCycleLab.Domain.csproj", "{E524B864-2D76-4480-B1B8-F7401D8DECB5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{1CF68446-A913-4C7F-B6AC-BDACAA945812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF68446-A913-4C7F-B6AC-BDACAA945812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF68446-A913-4C7F-B6AC-BDACAA945812}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E524B864-2D76-4480-B1B8-F7401D8DECB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E524B864-2D76-4480-B1B8-F7401D8DECB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E524B864-2D76-4480-B1B8-F7401D8DECB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E524B864-2D76-4480-B1B8-F7401D8DECB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
