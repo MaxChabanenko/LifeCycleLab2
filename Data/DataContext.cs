@@ -1,4 +1,4 @@
-﻿using LifeCycleLab.Domain;
+﻿using LifeCycleLab.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LifeCycleLab.Data

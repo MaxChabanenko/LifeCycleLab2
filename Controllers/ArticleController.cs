@@ -1,81 +1,26 @@
-﻿using LifeCycleLab.Models;
+﻿using LifeCycleLab.Data;
+using LifeCycleLab.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeCycleLab.Controllers
 {
     public class ArticleController : Controller
     {
+        private readonly DataContext dataContext;
+        public ArticleController(DataContext dataContext)
+        {
+            this.dataContext = dataContext;
+        }
         public ActionResult Index()
         {
-            List<Article> articles = new List<Article>
-        {
-            new Article
-            {
-                gid = Guid.NewGuid(),
-                Title = "Understanding C#",
-                Content = "Content of the article about understanding C#.",
-                PublishDate = new DateTime(2020, 1, 10),
-                LastModifiedDate = DateTime.Now,
-                Author = new Author
-                {
-                    gid = Guid.NewGuid(),
-                    FirstName = "John",
-                    SecondName = "Michael",
-                    LastName = "Doe",
-                    BirthDate = new DateTime(1980, 5, 15),
-                    LastModifiedDate = DateTime.Now,
-                    Articles = null // Set to null to avoid circular reference
-                }
-            },
-            new Article
-            {
-                gid = Guid.NewGuid(),
-                Title = "Introduction to Python",
-                Content = "Content of the article about introduction to Python.",
-                PublishDate = new DateTime(2019, 7, 14),
-                LastModifiedDate = DateTime.Now,
-                Author = new Author
-                {
-                    gid = Guid.NewGuid(),
-                    FirstName = "Jane",
-                    SecondName = "Elizabeth",
-                    LastName = "Smith",
-                    BirthDate = new DateTime(1975, 8, 25),
-                    LastModifiedDate = DateTime.Now,
-                    Articles = null // Set to null to avoid circular reference
-                }
-            },
-            new Article
-            {
-                gid = Guid.NewGuid(),
-                Title = "Java Basics",
-                Content = "Content of the article about Java basics.",
-                PublishDate = new DateTime(2021, 6, 1),
-                LastModifiedDate = DateTime.Now,
-                Author = new Author
-                {
-                    gid = Guid.NewGuid(),
-                    FirstName = "Emily",
-                    SecondName = "Rose",
-                    LastName = "Johnson",
-                    BirthDate = new DateTime(1990, 2, 10),
-                    LastModifiedDate = DateTime.Now,
-                    Articles = null // Set to null to avoid circular reference
-                }
-            }
-        };
+            List<Article> articles = dataContext.Articles.ToList();
             return View(articles);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            var authors = new List<Author>
-        {
-            new Author { gid = Guid.NewGuid(), FirstName = "John", SecondName = "Michael", LastName = "Doe", BirthDate = new DateTime(1980, 5, 15) },
-            new Author { gid = Guid.NewGuid(), FirstName = "Jane", SecondName = "Elizabeth", LastName = "Smith", BirthDate = new DateTime(1975, 8, 25) },
-            new Author { gid = Guid.NewGuid(), FirstName = "Emily", SecondName = "Rose", LastName = "Johnson", BirthDate = new DateTime(1990, 2, 10) }
-        };
+            var authors = dataContext.Authors.ToList();
 
             var viewModel = new ArticleViewModel
             {
@@ -89,32 +34,34 @@ namespace LifeCycleLab.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Article");
+                dataContext.Articles.Add(new Article()
+                {
+                    Title = viewModel.Title,
+                    PublishDate = viewModel.PublishDate,
+                    Content = viewModel.Content,
+                    Authors = viewModel.Authors,
+                    LastModifiedDate = DateTime.Now,
+                });
             }
             return View();
         }
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
-            var authors = new List<Author>
-        {
-            new Author { gid = Guid.NewGuid(), FirstName = "John", SecondName = "Michael", LastName = "Doe", BirthDate = new DateTime(1980, 5, 15) },
-            new Author { gid = Guid.NewGuid(), FirstName = "Jane", SecondName = "Elizabeth", LastName = "Smith", BirthDate = new DateTime(1975, 8, 25) },
-            new Author { gid = Guid.NewGuid(), FirstName = "Emily", SecondName = "Rose", LastName = "Johnson", BirthDate = new DateTime(1990, 2, 10) }
-        };
-            var article = new ArticleViewModel
-            {
-                Title = "Understanding C#",
-                Content = "Content of the article about understanding C#.",
-                Authors = authors,
-                PublishDate = DateTime.Now,
-                
-            };
+            var article = dataContext.Articles.FirstOrDefault(a => a.gid == id);
             return View(article);
         }
         [HttpPost]
-        public IActionResult Edit(ArticleViewModel newArticle)
+        public IActionResult Edit(ArticleViewModel viewModel)
         {
+            dataContext.Articles.Update(new Article()
+            {
+                Title = viewModel.Title,
+                PublishDate = viewModel.PublishDate,
+                Content = viewModel.Content,
+                Authors = viewModel.Authors,
+                LastModifiedDate = DateTime.Now,
+            });
             return RedirectToAction("Index", "Article");
         }
     }

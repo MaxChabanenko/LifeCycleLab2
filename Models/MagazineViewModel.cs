@@ -5,7 +5,7 @@ namespace LifeCycleLab.Models
 {
     public class MagazineViewModel
     {
-
+        public Guid gid { get; set; }
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
@@ -19,7 +19,7 @@ namespace LifeCycleLab.Models
         [Required(ErrorMessage = "Please select an article(s).")]
         public List<Guid> SelectedArticlesId { get; set; }
 
-        [ValidateNever] 
+        [ValidateNever]
         public List<Article> Articles { get; set; }
     }
 }

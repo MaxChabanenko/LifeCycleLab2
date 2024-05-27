@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    @* Підключення css *@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LifeCycleLab</title>
@@ -10,6 +11,7 @@
 </head>
 <body>
     <header>
+        @* Навбар *@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LifeCycleLab</a>
@@ -19,15 +21,19 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @* Кнопка Home (головний екран) *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @* Блок Автори *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
                         </li>
+                        @* Блок Статті *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Article" asp-action="Index">Articles</a>
                         </li>
+                        @* Блок Журнали *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Magazine" asp-action="Index">Magazines</a>
                         </li>
@@ -42,6 +48,7 @@
         </main>
     </div>
 
+    @* Нижній підпис *@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - LifeCycleLab - Чабаненко, Кадинцев, ІПЗм-11

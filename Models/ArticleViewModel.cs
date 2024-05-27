@@ -19,7 +19,7 @@ namespace LifeCycleLab.Models
         [Required(ErrorMessage = "Please select an author(s).")]
         public List<Guid> SelectedAuthorId { get; set; }
 
-        [ValidateNever] 
+        [ValidateNever]
         public List<Author> Authors { get; set; }
     }
 }
