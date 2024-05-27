@@ -13,6 +13,7 @@ namespace LifeCycleLab.Controllers
         }
         public ActionResult Index()
         {
+            //Виводить загальний список статей
             List<Article> articles = dataContext.Articles.ToList();
             return View(articles);
         }
@@ -20,6 +21,7 @@ namespace LifeCycleLab.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Відкриває вікно створення статті
             var authors = dataContext.Authors.ToList();
 
             var viewModel = new ArticleViewModel
@@ -32,6 +34,7 @@ namespace LifeCycleLab.Controllers
         [HttpPost]
         public IActionResult Create(ArticleViewModel viewModel)
         {
+            //Зберігає створену статтю
             if (ModelState.IsValid)
             {
                 dataContext.Articles.Add(new Article()
@@ -48,12 +51,14 @@ namespace LifeCycleLab.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
+            //Відкриває вікно редагування статей
             var article = dataContext.Articles.FirstOrDefault(a => a.gid == id);
             return View(article);
         }
         [HttpPost]
         public IActionResult Edit(ArticleViewModel viewModel)
         {
+            //Зберігає відредаговану статтю
             dataContext.Articles.Update(new Article()
             {
                 Title = viewModel.Title,

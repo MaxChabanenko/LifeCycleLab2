@@ -13,6 +13,7 @@ namespace LifeCycleLab.Controllers
         }
         public ActionResult Index()
         {
+            //Виводить усіх авторів
             List<Author> authors = dataContext.Authors.ToList();
             return View(authors);
         }
@@ -20,11 +21,13 @@ namespace LifeCycleLab.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Відкриває вікно створення автора
             return View();
         }
         [HttpPost]
         public IActionResult Create(AuthorViewModel viewModel)
         {
+            //Зберігає створенного автора
             if (ModelState.IsValid)
             {
                 dataContext.Authors.Add(new Author()
@@ -41,12 +44,14 @@ namespace LifeCycleLab.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
+            //Відкриває вікно редагування автора
             var author = dataContext.Authors.FirstOrDefault(a => a.gid == id);
             return View(author);
         }
         [HttpPost]
         public IActionResult Edit(Author newAuthor)
         {
+            //Зберігає відредагованого автора
             dataContext.Authors.Update(newAuthor);
 
             return RedirectToAction("Index", "Author");

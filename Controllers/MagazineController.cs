@@ -13,6 +13,7 @@ namespace LifeCycleLab.Controllers
         }
         public ActionResult Index()
         {
+            //Виводить усі журнали
             List<Magazine> magazines = dataContext.Magazines.ToList();
             return View(magazines);
         }
@@ -20,6 +21,7 @@ namespace LifeCycleLab.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //Відкриває вікно створення журналу
             var articles = dataContext.Articles.ToList();
 
             var viewModel = new MagazineViewModel
@@ -32,6 +34,7 @@ namespace LifeCycleLab.Controllers
         [HttpPost]
         public IActionResult Create(MagazineViewModel viewModel)
         {
+            //Зберігає створений журнал
             if (ModelState.IsValid)
             {
                 dataContext.Magazines.Add(new Magazine()
@@ -48,12 +51,14 @@ namespace LifeCycleLab.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
+            //Відкриває вікно редагування журналу
             var magazine = dataContext.Magazines.FirstOrDefault(m => m.gid == id);
             return View(magazine);
         }
         [HttpPost]
         public IActionResult Edit(MagazineViewModel newMagazine)
         {
+            //Зберігає відредагований журнал
             dataContext.Magazines.Update(new Magazine()
             {
                 gid = newMagazine.gid,
